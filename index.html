@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title and Favicon -->
+    <title>English Janala | Best Platform for Learning English</title>
+    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Tailwind + Daisy UI -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body class="">
+    <header
+      class="header border border-b-[#C6BDBD] border-l-0 border-r-0 border-t-0"
+    >
+      <div class="navbar py-7 w-15/16 mx-auto">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabindex="-1"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <a href="" class="btn btn-ghost">
+                  <i class="fa-solid fa-circle-question"></i> FAQ</a
+                >
+              </li>
+              <li>
+                <a href="" class="btn btn-ghost">
+                  <i class="fa-solid fa-book-open"></i> Learn</a
+                >
+              </li>
+              <li>
+                <a href="" class="btn btn-ghost">
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+          <a class="btn btn-ghost text-lg">
+            <span>English</span>
+            <img src="./assets/logo.png" alt="Logo" />
+            <span class="font-bangla">জানালা</span>
+          </a>
+        </div>
+        <div class="navbar-end hidden lg:flex">
+          <ul class="menu menu-horizontal px-1 space-x-4">
+            <li>
+              <a href="#faq" class="btn btn-outline btn-primary">
+                <i class="fa-solid fa-circle-question"></i> FAQ</a
+              >
+            </li>
+            <li>
+              <a href="#lessons" class="btn btn-outline btn-primary">
+                <i class="fa-solid fa-book-open"></i> Learn</a
+              >
+            </li>
+            <li>
+              <a href="#logout" class="btn btn-outline btn-primary">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main class="w-15/16 mx-auto">
+      <section class="hero-banner">
+        <div class="">
+          <div class="flex justify-between items-center py-12">
+            <div class="">
+              <h1 class="text-5xl font-bold">
+                <span class="text-[#00BCFF]">English</span> is Easy!!
+              </h1>
+              <p class="py-6 font-bangla max-w-[727px]">
+                আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন
+                অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে
+                নিয়ে যাবে অন্য একটি Level এ
+              </p>
+              <div class="flex flex-col gap-5">
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  class="input input-bordered w-full max-w-xs"
+                />
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  class="input input-bordered w-full max-w-xs"
+                />
+                <button class="btn btn-primary w-fit">Get Started</button>
+              </div>
+            </div>
+            <img src="./assets/hero-student.png" class="rounded-lg" />
+          </div>
+        </div>
+      </section>
+      <section id="lessons" class="my-[200px]">
+        <h2 class="section-header text-center font-bold text-4xl mb-10"><span class="text-[#00BCFF]">Let's</span> Learn Vocabularies</h2>
+        <div class="button-container text-center mx-auto space-x-5 mb-10">
+          <button class="btn btn-outline btn-primary">Lesson -1</button>
+          <button class="btn btn-outline btn-primary">Lesson -2</button>
+          <button class="btn btn-outline btn-primary">Lesson -3</button>
+          <button class="btn btn-outline btn-primary">Lesson -4</button>
+          <button class="btn btn-outline btn-primary">Lesson -5</button>
+          <button class="btn btn-outline btn-primary">Lesson -6</button>
+          <button class="btn btn-outline btn-primary">Lesson -7</button>
+        </div>
+        <div id="vocabulary">
+            <div class="bg-[#F8F8F8] rounded-3xl py-16 text-center font-bangla space-y-3">
+                <p class="text-sm">আপনি এখনো কোন Lesson Select করেন নি</p>
+                <h3 class="text-4xl">একটি Lesson Select করুন।</h3>
+            </div>
+        </div>
+      </section>
+      <section id="faq">
+        <h2 class="section-header text-center font-bold text-4xl mb-20"><span class="text-[#00BCFF]">Frequently</span> Asked Questions</h2>
+        <ol id="qna" class="space-y-5 list-decimal list-inside">
+            <li class="bg-[#F8F8F8] rounded-2xl pl-4 pt-4 pb-[21px] font-medium text-[#18181B]">How can I start learning English on this website?</li>
+            <li class="bg-[#F8F8F8] rounded-2xl pl-4 pt-4 pb-[21px] font-medium text-[#18181B]">Is this website free to use?</li>
+            <li class="bg-[#F8F8F8] rounded-2xl pl-4 pt-4 pb-[21px] font-medium text-[#18181B]">Do I need to create an account?</li>
+            <li class="bg-[#F8F8F8] rounded-2xl pl-4 pt-4 pb-[21px] font-medium text-[#18181B]">How can I build my English vocabulary?</li>
+            <li class="bg-[#F8F8F8] rounded-2xl pl-4 pt-4 pb-[21px] font-medium text-[#18181B]">Do you offer certificates for completed courses?</li>
+            
+
+        </ol>
+    </section>
+    </main>
+    <script src="./scripts/scripts.js"></script>
+  </body>
+</html>
