@@ -17,3 +17,7 @@
     font-size: 24px;
     color: #374957;
 }
+
+.empty-vocabulary {
+    color: grayscale(500);
+}
