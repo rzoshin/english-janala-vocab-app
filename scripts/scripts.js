@@ -1,3 +1,32 @@
+AOS.init({
+  duration: 900,
+  easing: "ease-out-cubic",
+  once: true,
+  offset: 120
+});
+
+const text = "English is Easy!!";
+const typingElement = document.getElementById("typing");
+
+let index = 0;
+
+function typeText() {
+  if (index < text.length) {
+    typingElement.innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeText, 65);
+  }
+}
+
+typeText();
+
+window.addEventListener("load", () => {
+        const img = document.getElementById("hero-image");
+
+        setTimeout(() => {
+          img.classList.remove("opacity-0", "translate-y-4");
+        }, 700);
+      });
 // API call to get all lessons
 const loadLessons = () => {
     const url = "https://openapi.programming-hero.com/api/levels/all";

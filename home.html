@@ -24,7 +24,6 @@
       rel="stylesheet"
       type="text/css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,13 +32,15 @@
       href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body class="">
     <header
-      class="header border border-b-[#C6BDBD] border-l-0 border-r-0 border-t-0"
+      class="header border border-b-[#C6BDBD] border-l-0 border-r-0 border-t-0 sticky top-0 z-50 bg-[#FFFFFF]/80 backdrop-blur-sm"
     >
       <div class="navbar py-7 w-14/16 mx-auto">
         <div class="navbar-start">
@@ -114,24 +115,26 @@
           <div class="flex justify-between items-center py-12">
             <div class="">
               <h1 class="text-5xl font-bold">
-                <span class="text-[#00BCFF]">English</span> is Easy!!
+                <span id="typing">
+
+                </span>
+                <!-- <span class="text-[#00BCFF]">English</span> is Easy!! -->
               </h1>
               <p class="py-6 font-bangla max-w-[727px]">
-                আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন
-                অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে
-                নিয়ে যাবে অন্য একটি Level এ
+                <b>আজ থেকেই শুরু হোক আপনার ভাষা শেখার নতুন যাত্রা।</b> <br>
+                আপনি যদি নতুন হন অথবা নিজের দক্ষতা আরও উন্নত করতে চান, আমাদের Interactive Lessons আপনাকে পৌঁছে দেবে পরবর্তী স্তরে।
               </p>
               <div class="">
-                <button class="btn btn-primary w-fit">Get Started</button>
+                <button class="btn btn-primary w-fit"> <div class="status status-md status-primary animate-bounce"></div>Get Started</button>
               </div>
             </div>
-            <img src="./assets/hero-student.png" class="rounded-lg" />
+            <img id="hero-image" src="./assets/hero-student.png" class="rounded-lg w-[600px] opacity-0 translate-y-4 transition-all duration-1000 ease-out"/>
           </div>
         </div>
       </section>
-      <section id="lessons" class="mt-[200px]">
+      <section data-aos="fade-up" id="lessons" class="mt-[100px]">
         <h2 class="section-header text-center font-bold text-4xl mb-10">
-          <span class="text-[#00BCFF]">Let's</span> Learn Vocabularies
+          <div class="status status-xl status-info animate-bounce"></div> <span class="text-[#00BCFF]">Let's</span> Learn Vocabularies
         </h2>
         <div
           id="button-container"
@@ -183,7 +186,7 @@
           <h3 class="text-4xl">একটি Lesson Select করুন।</h3>
         </div>
       </section>
-      <section id="faq" class="mb-[280px]">
+      <section data-aos="fade-up" id="faq" class="mb-[280px]">
         <h2 class="section-header text-center font-bold text-4xl mb-20">
           <span class="text-[#00BCFF]">Frequently</span> Asked Questions
         </h2>
@@ -247,7 +250,7 @@
       ></dialog>
     </main>
 
-    <footer class="py-[100px] border-t-[3px] border-[#FFEBEB]">
+    <footer id="footer" class="py-[100px]">
       <section class="w-15/16 mx-auto flex justify-between">
         <div>
           <a class="flex text-xl mb-[21px] items-center gap-1">
@@ -280,6 +283,7 @@
         </div>
       </section>
     </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="./scripts/scripts.js"></script>
   </body>
 </html>
