@@ -14,13 +14,10 @@ btn_element.addEventListener('click', function () {
     // 3. Match the mobile number and pin
     if ((contact === "01713078749") && (pin === "4351")) {
         // 3.1 true:: Homepage
-        alert("Login Successful");
         window.location.assign("./home.html")
     } else {
         // 3.2 false:: alert->return
         alert("Login Failed!");
         return;
     }
-
-
 })

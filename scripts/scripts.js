@@ -20,13 +20,13 @@ function typeText() {
 
 typeText();
 
-window.addEventListener("load", () => {
-        const img = document.getElementById("hero-image");
+document.addEventListener("DOMContentLoaded", () => {
+  const img = document.getElementById("hero-image");
 
-        setTimeout(() => {
-          img.classList.remove("opacity-0", "translate-y-4");
-        }, 700);
-      });
+  setTimeout(() => {
+    img.classList.remove("opacity-0", "translate-y-6");
+  }, 800);
+});
 // API call to get all lessons
 const loadLessons = () => {
     const url = "https://openapi.programming-hero.com/api/levels/all";
