@@ -29,9 +29,20 @@ const displayData = (lessons) => {
     }
 }
 // Upon loading the website, api call will be made to get all lessons and display in the UI
-loadLessons();
 
+const manageSpinner = (status) => {
+    const spinner = document.getElementById("loading");
+    const wordContainer = document.getElementById("word-container");
 
+    if(status == true) {
+        spinner.classList.remove("hidden");
+        wordContainer.classList.add("hidden");
+    }
+    if(status == false) {
+        spinner.classList.add("hidden");
+        wordContainer.classList.remove("hidden");
+    }
+}
 // Reusable Helpers code
 function removeState() {
     const allBtns = document.querySelectorAll(".lesson-btn");
@@ -50,6 +61,7 @@ function enableState(id){
 
 // API call to get words by level
 const loadWords = (id) => {
+    manageSpinner(true);
     const url = `https://openapi.programming-hero.com/api/level/${id}`;
     fetch(url)
         .then((res) => res.json()) 
@@ -79,6 +91,10 @@ const loadWordDetail = async (id) => {
 // synonyms: (3) ['careful', 'alert', 'watchful']
 // word: "Cautious"
 
+const createElements = (array) => {
+    const htmlElements = array.map(el => `<div class="bg-[#EDF7FF] py-[6px] px-[20px] border-1 border-[#D7E4EF] rounded-md text-xl">${el}</div>`);
+    return htmlElements.join(" ");
+}
 
 const displayWordDetail = (details) => {
     const modal = document.getElementById("my_modal_5");
@@ -96,9 +112,7 @@ const displayWordDetail = (details) => {
             </p>
             <p class="pb-2.5">সমার্থক শব্দ গুলো</p>
             <div id="synonyms" class="flex gap-3">
-              <div class="bg-[#EDF7FF] py-[6px] px-[20px] border-1 border-[#D7E4EF] rounded-md text-xl">${details.synonyms[0]}</div>
-              <div class="bg-[#EDF7FF] py-[6px] px-[20px] border-1 border-[#D7E4EF] rounded-md text-xl">${details.synonyms[1]}</div>
-              <div class="bg-[#EDF7FF] py-[6px] px-[20px] border-1 border-[#D7E4EF] rounded-md text-xl">${details.synonyms[2]}</div>
+            ${createElements(details.synonyms)}
             </div>
           </div>
           <div class="modal-action flex justify-start">
@@ -126,6 +140,7 @@ const displayWords = (words) => {
             <p class="text-sm text-[#79716B]">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
             <h3 class="text-4xl">নেক্সট Lesson এ যান</h3>
         </div>`;
+        manageSpinner(false);
         return 0;
     }
 
@@ -147,4 +162,24 @@ const displayWords = (words) => {
         // 4. Append the child
         wordContainer.appendChild(wordCard);
     }
+    manageSpinner(false);
 }
+
+loadLessons();
+
+document.getElementById("btn-search").addEventListener("click", () => {
+    removeState();
+    const input = document.getElementById("input-search");
+    const searchTerm = input.value.trim().toLowerCase();
+    console.log(searchTerm);
+
+    fetch("https://openapi.programming-hero.com/api/words/all")
+    .then(res => res.json())
+    .then(json => 
+    {
+        const allWords = json.data;
+        const filterWords = allWords.filter((word) => 
+        word.word.toLowerCase().startsWith(searchTerm));
+        displayWords(filterWords);
+    })
+})
