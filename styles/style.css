@@ -21,3 +21,13 @@
 .empty-vocabulary {
     color: grayscale(500);
 }
+
+.active {
+    background-color: rgb(65,42,213);
+    color: white;
+}
+
+.passive {
+    background-color: white;
+    color: rgb(65,42,213);
+}

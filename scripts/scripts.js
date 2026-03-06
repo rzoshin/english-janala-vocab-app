@@ -6,6 +6,7 @@ const loadLessons = () => {
         .then((json) => displayData(json.data));
 }
 
+// Display all lessons in the UI
 const displayData = (lessons) => {
     lessons.forEach(elem => console.log(elem))
 
@@ -19,7 +20,7 @@ const displayData = (lessons) => {
         // 3. Create Element
         const btnDiv = document.createElement("button")
         btnDiv.innerHTML = `<i class="fa-brands fa-leanpub"></i> Lesson -${lesson.level_no}`
-        btnDiv.classList.add("btn", "btn-outline", "btn-primary");
+        btnDiv.classList.add("lesson-btn", "btn", "btn-outline", "btn-primary");
         btnDiv.setAttribute("onclick", `loadWords(${lesson.level_no})`);
         btnDiv.setAttribute("id", `lesson-${lesson.level_no}`);
 
@@ -27,35 +28,87 @@ const displayData = (lessons) => {
         levelContainer.appendChild(btnDiv);
     }
 }
-
+// Upon loading the website, api call will be made to get all lessons and display in the UI
 loadLessons();
 
-// API call to get words by level
 
-const loadWords = (id) => {
-    for(let i =1; i < 8; i++){
-        const allBtns = document.getElementById(`lesson-${i}`);
-        allBtns.classList.remove("bg-[rgb(65,42,213)]", "text-white");
-        allBtns.classList.add("bg-white", "text-[rgb(65,42,213)]");
-    }
-    const caller = document.getElementById(`lesson-${id}`);
-    caller.classList.remove("bg-white", "text-[rgb(65,42,213)]");
-    caller.classList.add("bg-[rgb(65,42,213)]", "text-white");
+// Reusable Helpers code
+function removeState() {
+    const allBtns = document.querySelectorAll(".lesson-btn");
 
-    const url = `https://openapi.programming-hero.com/api/level/${id}`
-    fetch(url)
-        .then((res) => res.json())
-        .then((json) => displayWords(json.data));
-
-    
+    for(btn of allBtns){ 
+                btn.classList.remove("active");
+                btn.classList.add("passive");
+            }
 }
 
-// "id": 14,
-// "level": 2,
-// "word": "Nourish",
-// "meaning": "পুষ্টি যোগানো",
-// "pronunciation": "নরিশ"
+function enableState(id){
+    const activeBtn = document.getElementById(`lesson-${id}`);
+    activeBtn.classList.add("active");
+    activeBtn.classList.remove("passive");
+}
 
+// API call to get words by level
+const loadWords = (id) => {
+    const url = `https://openapi.programming-hero.com/api/level/${id}`;
+    fetch(url)
+        .then((res) => res.json()) 
+        .then((json) => {
+            removeState(); // Remove active state from all buttons
+            enableState(id); // Add active state to the clicked button
+            displayWords(json.data) // Display words in the UI
+    }); 
+}
+
+const loadWordDetail = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/word/${id}`;
+    const res = await fetch(url);
+    const details = await res.json();
+    console.log(details);
+    displayWordDetail(details.data);
+
+}
+
+// id: 3
+// level: 2
+// meaning: "সতর্ক"
+//partsOfSpeech: "adjective"
+// points: 2
+// pronunciation: "কশাস"
+// sentence:"Be cautious while crossing the road."
+// synonyms: (3) ['careful', 'alert', 'watchful']
+// word: "Cautious"
+
+
+const displayWordDetail = (details) => {
+    const modal = document.getElementById("my_modal_5");
+    modal.innerHTML = `
+        <div class="modal-box rounded-3xl p-6">
+          <div class="p-6 border-2 border-[#EDF7FF] rounded-xl">
+            <h3 class="font-semibold text-4xl pb-8">
+              ${details.word} (<i class="fa-solid fa-microphone-lines"></i>:${details.pronunciation})
+            </h3>
+            <p class="font-semibold text-2xl pb-2.5">Meaning</p>
+            <p class="font-bangla font-medium text-2xl pb-8">${details.meaning}</p>
+            <p class="font-semibold text-2xl pb-2">Example</p>
+            <p class="font-regular text-2xl pb-8">
+              ${details.sentence}
+            </p>
+            <p class="pb-2.5">সমার্থক শব্দ গুলো</p>
+            <div id="synonyms" class="flex gap-3">
+              <div class="bg-[#EDF7FF] py-[6px] px-[20px] border-1 border-[#D7E4EF] rounded-md text-xl">${details.synonyms[0]}</div>
+              <div class="bg-[#EDF7FF] py-[6px] px-[20px] border-1 border-[#D7E4EF] rounded-md text-xl">${details.synonyms[1]}</div>
+              <div class="bg-[#EDF7FF] py-[6px] px-[20px] border-1 border-[#D7E4EF] rounded-md text-xl">${details.synonyms[2]}</div>
+            </div>
+          </div>
+          <div class="modal-action flex justify-start">
+            <form method="dialog">
+              <button class="btn btn-primary rounded-xl">Complete Learning</button>
+            </form>
+          </div>
+        </div>`
+    modal.showModal();
+} 
 const displayWords = (words) => {
     // 1. Get the container and make it empty
     const wordContainer = document.getElementById("word-container");
@@ -86,7 +139,7 @@ const displayWords = (words) => {
             <p class="mb-6 font-medium text-xl font-bangla">Meaning/Pronunciation</p>
             <p class="font-semibold text-3xl text-[#18181B]/80">${word.meaning ? word.meaning : "শব্দ পাওয়া যায়নি"}/${word.pronunciation ? word.pronunciation : "শব্দ পাওয়া যায়নি"}</p>
             <div class="flex justify-between h-fit items-end mt-10">
-            <button class="btn w-[56px] h-[56px] flex items-center justify-center bg-[#1A91FF]/10 rounded-lg hover:bg-[#1A91FF]/30 hover:cursor-pointer"><i class="fa-solid fa-circle-info"></i></button>
+            <button onclick="loadWordDetail(${word.id})" class="btn w-[56px] h-[56px] flex items-center justify-center bg-[#1A91FF]/10 rounded-lg hover:bg-[#1A91FF]/30 hover:cursor-pointer"><i class="fa-solid fa-circle-info"></i></button>
             <button class="btn w-[56px] h-[56px] flex items-center justify-center bg-[#1A91FF]/10 rounded-lg hover:bg-[#1A91FF]/30 hover:cursor-pointer"><i class="fa-solid fa-volume-high"></i></button>
             </div>`
         wordCard.classList.add("wordCard", "p-[56px]", "text-center", "bg-white", "rounded-xl", "h-[372px]");
