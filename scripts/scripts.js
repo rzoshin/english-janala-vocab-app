@@ -72,6 +72,12 @@ const loadWords = (id) => {
     }); 
 }
 
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
+
 const loadWordDetail = async (id) => {
     const url = `https://openapi.programming-hero.com/api/word/${id}`;
     const res = await fetch(url);
@@ -155,7 +161,7 @@ const displayWords = (words) => {
             <p class="font-semibold text-3xl text-[#18181B]/80">${word.meaning ? word.meaning : "শব্দ পাওয়া যায়নি"}/${word.pronunciation ? word.pronunciation : "শব্দ পাওয়া যায়নি"}</p>
             <div class="flex justify-between h-fit items-end mt-10">
             <button onclick="loadWordDetail(${word.id})" class="btn w-[56px] h-[56px] flex items-center justify-center bg-[#1A91FF]/10 rounded-lg hover:bg-[#1A91FF]/30 hover:cursor-pointer"><i class="fa-solid fa-circle-info"></i></button>
-            <button class="btn w-[56px] h-[56px] flex items-center justify-center bg-[#1A91FF]/10 rounded-lg hover:bg-[#1A91FF]/30 hover:cursor-pointer"><i class="fa-solid fa-volume-high"></i></button>
+            <button onclick="pronounceWord('${word.word}')" class="btn w-[56px] h-[56px] flex items-center justify-center bg-[#1A91FF]/10 rounded-lg hover:bg-[#1A91FF]/30 hover:cursor-pointer"><i class="fa-solid fa-volume-high"></i></button>
             </div>`
         wordCard.classList.add("wordCard", "p-[56px]", "text-center", "bg-white", "rounded-xl", "h-[372px]");
         // btnDiv.setAttribute("onclick", `loadWords(${lesson.level_no})`);
